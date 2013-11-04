@@ -1,0 +1,109 @@
+<!doctype html>
+
+<html>
+  
+  <head>
+    <title>Listing</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <style type="text/css">
+      body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">My Group Page</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav"></ul>
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Search here" class="form-control input-sm">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-success btn-sm" id="search-button">Search</button>
+            </div>
+          </form>
+        </div>
+        <!--/.navbar-collapse -->
+      </div>
+    </div>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <p>Results</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Categories</th>
+              <th>Date</th>
+              <th>Event Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>
+                <div class="event-categories"><a>Sports</a></div>
+              </td>
+              <td><div class="event-date">10/1/2013</div></td>
+              <td>
+              <div class="event-details">
+                <div>
+                  <h5><strong>Name: </strong><span>Football Tailgate</span></h5>
+                </div>
+                <div>
+                  <h5><strong>Organizer:</strong><span><a>Ben Sammons</a></span></h5>
+                </div>
+                <div>
+                  <h5><strong>Group:</strong><span><a>Annihilators</a></span></h5>
+                </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>
+                <a>Programming</a>
+              </td>
+              <td><div class="event-date">11/3/2013</div></td>
+              <td>              <div class="event-details">
+                <div>
+                  <h5><strong>Name: </strong><span>HackMizzou</span></h5>
+                </div>
+                <div>
+                  <h5><strong>Organizer:</strong><span><a>Dan Silver</a></span></h5>
+                </div>
+                <div>
+                  <h5><strong>Group:</strong><span><a>ACM</a></span></h5>
+                </div>
+                </div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="container">
+      <!-- Example row of columns -->
+      <hr>
+      <footer>
+        <p>&copy; EventZou Group 2013</p>
+        <p></p>
+      </footer>
+    </div>
+    <!-- /container -->
+  </body>
+
+</html>
