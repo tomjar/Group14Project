@@ -104,7 +104,7 @@ include 'common.php';
                     <!-- <li>            <a href="#">About</a>          </li>          <li>            <a href="#">Contact</a>          </li> -->
                     <!--PHP PHP-->
 
-                    <?php if ($_SESSION['user'] == NULL) { ?>
+                    <?php if (!$_SESSION['valid']) { ?>
                         <li>
                             <a href="" class="block-default login">Login</a>
                         </li>

@@ -30,25 +30,24 @@ $(document).ready(function() {
     $(".submit-login").click(function(e) {
         //check if valid inputs (later)
         console.log("login submit")
-        var data = {};
+        var dat = {};
         $(".log-data").each(function(index, element) {
-            data[element.id] = $(element).val();
+            dat[element.id] = $(element).val();
         });
         //send object of login data via ajax
         //to window.location.origin.replace("http","https").replace("httpss","https")+"/login.php"
-        jQuery.ajax(
-                {type: "POST",
-                    contentType: "application/json",
-                    url: "login.php",
-                    data: JSON.stringify(data),
-                    success: function(data) {
-                        console.log(data);
-                        window.location.href = window.location.href + " ";//reload page
-                    },
-                    failure: function() {
-                        console.log("something went wrong");
-                    }
-                });
+        $.ajax({
+            type: "POST",
+            url: "login.php",
+            data: dat
+        }).done(function(msg) {
+            if (msg.acknowledged) {
+                location.reload();
+            } else {
+                console.log("login fail");
+                //login failed
+            }
+        });
         //if success dismiss modal, and redirect
         $("#login").modal('toggle');
     });

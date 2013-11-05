@@ -104,7 +104,7 @@ include 'common.php';
                     </li>
                     <!-- <li>            <a href="#">About</a>          </li>          <li>            <a href="#">Contact</a>          </li> -->
                     <!--PHP PHP-->
-                    <?php if ($_SESSION['user'] == NULL) { ?>
+                    <?php if (!$_SESSION['valid']) { ?>
                         <li>
                             <a href="" class="block-default login">Login</a>
                         </li>
@@ -169,7 +169,7 @@ include 'common.php';
                 <!--<div id="group-img" class="pull-left"><img src="#" alt="WAT"></div>-->
                 <!-- -->
                 <!--PHP to determine if edit should be here-->
-                <?php if ($_SESSION[user] != NULL) { ?><a class="toggle-edit" href="">edit</a> <?php } ?>
+                <?php if ($_SESSION[valid]) { ?><a class="toggle-edit" href="">edit</a> <?php } ?>
                 <div id="group-name-div" class="pull-left "><h3><i><span id = "group-name-value " class="editable" >ACM</span></i></h3></div>
                 <div id="group-leader-div" class="pull-left"><h4>Led by:     <span id="group-leader-value" class="editable">Ben Sammons</span></h4></div>
                 <div id="group-email-div" class="pull-left"><h4>contact us at:   <span id="group-email-value" class="editable"><a href="mailto:bsammnz@gmail.com">bsammnz@gmail.com</a></span></h4></div>
