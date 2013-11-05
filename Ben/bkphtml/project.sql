@@ -1,3 +1,4 @@
+DROP SCHEMA IF EXISTS project CASCADE;
 CREATE SCHEMA project;
 SET Search_Path = project;
 ---bsammnz@gmail.com
@@ -23,10 +24,9 @@ SET Search_Path = project;
 ---- Date_Last_Visit
 ---- Picture_ID
 CREATE TABLE Groups (
-Group_ID SERIAL UNIQUE NOT NULL,
+Group_ID SERIAL UNIQUE ,
 Name CHARACTER VARYING(255) NULL,
 Description text NULL,
-Image_ID INTEGER NULL,
 Date_Joined timestamp NULL,
 Date_Last_Visit timestamp NULL
 );
@@ -43,7 +43,8 @@ Date_Last_Visit timestamp NULL
 --Salt -- set to length 6 but we can change that
 CREATE TABLE Salts (
 Salt_ID SERIAL UNIQUE NOT NULL,
-Salt VARCHAR(6) NULL,
+Group_ID INTEGER NULL,
+Salt CHARACTER VARYING(255) NULL
 );
 
 --passwords to groups is 1-1

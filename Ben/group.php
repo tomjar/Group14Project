@@ -5,7 +5,7 @@ include 'common.php';
 <html>
 
     <head>
-        <title>Justified Nav</title>
+        <title>Group</title>
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -176,7 +176,7 @@ include 'common.php';
                 <div id="group-description-div" class="pull-left"><h4>Description</h4><div id="description-value" class="editable">
                         badassery untold
                     </div></div>
-                <div id="group-web-div" class="pull-left"><h4>find us at:   <span id="group-website-value" class="editable"><a href="acm.missouri.edu">acm.missouri.edu</a></span></h4></div>
+                <div id="group-web-div" class="pull-left"><h4>find us at:   <span id="group-website-value" class="editable"><a href="http://acm.missouri.edu">acm.missouri.edu</a></span></h4></div>
                 <div></div>
             </div>
             <!--group events-->
@@ -186,7 +186,6 @@ include 'common.php';
                     margin-bottom: 15px;
                     max-width: 700px;
                     min-width: 250px;
-                    background: rgba(0,125,0,0.4);
                     border-radius: 15px;
                 }
                 #events .col-md-3 {
@@ -194,7 +193,8 @@ include 'common.php';
                     margin-left: 10px;
                     width:31%;
                     height:100px;
-                    background: rgba(0,125,0,0.2);
+                    background: rgba(125,125,125,0.1);
+                    border-radius: 15px;
                 }
                 #events .col-md-3 a {
                     marign-bottom: 15px;
@@ -202,14 +202,14 @@ include 'common.php';
             </style>
             <div id="events" class="container">
                 <div class="row">
-                    <div class="col-md-3"><h4>Title:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
-                    <div class="col-md-3"><h4>Title:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
-                    <div class="col-md-3"><h4>Title:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
+                    <div class="col-md-3"><h4>Event:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
+                    <div class="col-md-3"><h4>Event:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
+                    <div class="col-md-3"><h4>Event:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3"><h4>Title:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
-                    <div class="col-md-3"><h4>Title:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
-                    <div class="col-md-3"><h4>Title:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
+                    <div class="col-md-3"><h4>Event:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
+                    <div class="col-md-3"><h4>Event:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
+                    <div class="col-md-3"><h4>Event:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
                 </div>
             </div>
             <!-- Site footer -->
