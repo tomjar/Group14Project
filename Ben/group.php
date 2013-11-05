@@ -7,9 +7,9 @@ include 'common.php';
     <head>
         <title>Justified Nav</title>
         <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="modal.css">
         <script type="text/javascript" src="common.js"></script>
         <style type="text/css">
@@ -104,15 +104,21 @@ include 'common.php';
                     </li>
                     <!-- <li>            <a href="#">About</a>          </li>          <li>            <a href="#">Contact</a>          </li> -->
                     <!--PHP PHP-->
-                    <li>
-                        <a href="group">My Group</a>
-                    </li>
-                    <li>
-                        <a href="" class="login block-default">Login</a>
-                    </li>
-                    <li>
-                        <a href="" class="register block-default">Register Group</a>
-                    </li>
+                    <?php if ($_SESSION['user'] == NULL) { ?>
+                        <li>
+                            <a href="" class="block-default login">Login</a>
+                        </li>
+                        <li>
+                            <a href="" class="block-default register">Register Group</a>
+                        </li>
+                        <?php
+                    } else {
+                        ?>
+
+                        <li>
+                            <a href="logout.php">logout</a>
+                        </li>
+                    <?php } ?>
                 </ul>
                 <h3 id="brand-tag" class="text-muted">EventZou</h3>
             </div>
@@ -162,7 +168,8 @@ include 'common.php';
                 <!--remove image if there isn't one!-->
                 <!--<div id="group-img" class="pull-left"><img src="#" alt="WAT"></div>-->
                 <!-- -->
-                <!--PHP to determine if edit should be here--><a class="toggle-edit" href="">edit</a>
+                <!--PHP to determine if edit should be here-->
+                <?php if ($_SESSION[user] != NULL) { ?><a class="toggle-edit" href="">edit</a> <?php } ?>
                 <div id="group-name-div" class="pull-left "><h3><i><span id = "group-name-value " class="editable" >ACM</span></i></h3></div>
                 <div id="group-leader-div" class="pull-left"><h4>Led by:     <span id="group-leader-value" class="editable">Ben Sammons</span></h4></div>
                 <div id="group-email-div" class="pull-left"><h4>contact us at:   <span id="group-email-value" class="editable"><a href="mailto:bsammnz@gmail.com">bsammnz@gmail.com</a></span></h4></div>

@@ -39,6 +39,7 @@ $(document).ready(function() {
                     data: JSON.stringify({value: "hello there"}),
                     success: function(data) {
                         console.log(data);
+                        window.location.href = window.location.href + " ";//reload page
                     },
                     failure: function() {
                         console.log("something went wrong");

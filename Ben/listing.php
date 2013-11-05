@@ -5,11 +5,11 @@ include 'common.php';
 <html>
 
     <head>
-        <title>Justified Nav</title>
+        <title>Event Listing</title>
         <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="modal.css">
         <script type="text/javascript" src="common.js"></script>
         <style type="text/css">
@@ -103,15 +103,24 @@ include 'common.php';
                     </li>
                     <!-- <li>            <a href="#">About</a>          </li>          <li>            <a href="#">Contact</a>          </li> -->
                     <!--PHP PHP-->
-                    <li>
-                        <a href="group.php">My Group</a>
-                    </li>
-                    <li>
-                        <a href="" class="block-default login">Login</a>
-                    </li>
-                    <li>
-                        <a href="" class="block-default register">Register Group</a>
-                    </li>
+
+                    <?php if ($_SESSION['user'] == NULL) { ?>
+                        <li>
+                            <a href="" class="block-default login">Login</a>
+                        </li>
+                        <li>
+                            <a href="" class="block-default register">Register Group</a>
+                        </li>
+                        <?php
+                    } else {
+                        ?>
+                        <li>
+                            <a href="group.php">My Group</a>
+                        </li>
+                        <li>
+                            <a href="logout.php">logout</a>
+                        </li>
+                    <?php } ?>
                 </ul>
                 <h3 id="brand-tag" class="text-muted">EventZou</h3>
             </div>

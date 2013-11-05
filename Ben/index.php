@@ -97,16 +97,23 @@ include 'common.php';
                         <a href="listing.php">Listing</a>
                     </li>
                     <li>
-                    <li>
-                        <a href="group.php">My Group</a>
-                    </li>
-
-                    <li>
-                        <a href="" data-toggle="modal" class="block-default login">Login</a>
-                    </li>
-                    <li>
-                        <a href="" data-toggle="modal" class="block-default register">Register Group</a>
-                    </li>
+                        <?php if ($_SESSION['user'] == NULL) { ?>
+                        <li>
+                            <a href="" class="block-default login">Login</a>
+                        </li>
+                        <li>
+                            <a href="" class="block-default register">Register Group</a>
+                        </li>
+                        <?php
+                    } else {
+                        ?>
+                        <li>
+                            <a href="group.php">My Group</a>
+                        </li>
+                        <li>
+                            <a href="logout.php">logout</a>
+                        </li>
+                    <?php } ?>
                 </ul>
                 <h3 id="brand-tag" class="text-muted">EventZou</h3>
             </div>
