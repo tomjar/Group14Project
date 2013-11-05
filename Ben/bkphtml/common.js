@@ -9,19 +9,19 @@ $(document).ready(function() {
     });
     var b = true;
     $(".toggle-edit").click(function(e) {
-        b = !b;
-        //trigger editability of fields on page
-        //note that this means that when the server recieves a request
-        //the validity of the session MUST be checked
-        if (!b) {
-            $(".toggle-edit").text("save");
-            $(".editable").attr("contenteditable", "true");
-        } else {
-            $(".toggle-edit").text("edit");
-            //scrape data and ajax it off
-            $(".editable").attr("contenteditable", "false");
-        }
-        return false;
+    	b = !b;
+    	//trigger editability of fields on page
+    	//note that this means that when the server recieves a request 
+    	//the validity of the session MUST be checked
+    	if (!b) {
+    	$(".toggle-edit").text("save");
+    	$(".editable").attr("contenteditable","true");
+    	} else {
+    	$(".toggle-edit").text("edit");
+    	//scrape data and ajax it off
+    	$(".editable").attr("contenteditable","false");
+    	}
+    	return false;
     });
     $(".login").click(function(e) {
         //trigger login modal
@@ -32,18 +32,9 @@ $(document).ready(function() {
         console.log("login submit")
         //send object of login data via ajax
         //to window.location.origin.replace("http","https").replace("httpss","https")+"/login.php"
-        jQuery.ajax(
-                {type: "POST",
-                    contentType: "application/json",
-                    url: "login.php",
-                    data: JSON.stringify({value: "hello there"}),
-                    success: function(data) {
-                        console.log(data);
-                    },
-                    failure: function() {
-                        console.log("something went wrong");
-                    }
-                });
+        $.post(window.location.origin.replace("http","https").replace("httpss","https")+"/login.php",JSON.stringify({value: "hello there"})).done(function(data) {
+        	console.log("success "+JSON.parse(data));
+        });
         //if success dismiss modal, and redirect
         $("#login").modal('toggle');
     });
