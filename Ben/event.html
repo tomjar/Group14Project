@@ -5,9 +5,9 @@
   <head>
     <title>Justified Nav</title>
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <style type="text/css">
       /* Space out content a bit */
       body {
@@ -98,13 +98,13 @@
           <!-- <li>            <a href="#">About</a>          </li>          <li>            <a href="#">Contact</a>          </li> -->
           <!--PHP PHP-->
           <li>
-            <a href="#">My Group</a>
+            <a href="group">My Group</a>
           </li>
           <li>
-            <a href="#">Login</a>
+            <a href="" class="login block-default">Login</a>
           </li>
           <li>
-            <a href="#">Register Group</a>
+            <a href="" class="register block-default">Register Group</a>
           </li>
         </ul>
         <h3 id="brand-tag" class="text-muted">EventZou</h3>
@@ -116,15 +116,15 @@
           height: 500px;
         }
         #event-name {
-          width: 300px;
+          width: 250px;
           height: 50px;
         }
         #event-date {
-          width: 200px;
+          width: 250px;
           height: 50px;
         }
         #event-host {
-          width: 300px;
+          width: 250px;
           height: 30px;
         }
         #event-description {
@@ -139,9 +139,12 @@
         #event-description-value {
           padding: 10px;
         }
+        #event-contact {
+          width: 250px;
+        }
       </style>
       <div id="event">
-        <img src width="200px" alt="image problems" class="pull-left img-rounded">
+        <img src width="200px" height="200px" alt="image problems" class="pull-left img-rounded">
         <div class="pull-left" id="event-name">
           <h4 class="pull-left" id="event-name-value">Event Name:<strong>Lolapalooza</strong></h4>
         </div>
@@ -150,6 +153,9 @@
         </div>
         <div class="pull-left" id="event-host">
           <h4>Hosted by:           <a href id="event-host-value">ACM</a></h4>
+        </div>
+        <div class="pull-left" id="event-contact">
+          <h4>Contact:           <a href="mailto:ACM" id="event-contact-value">bds8c7@mail.missouri.edu</a></h4>
         </div>
         <hr class="pull-left">
         <div class="pull-left" id="event-description">

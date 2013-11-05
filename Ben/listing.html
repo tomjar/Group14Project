@@ -5,9 +5,10 @@
   <head>
     <title>Justified Nav</title>
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="common.js"></script>
     <style type="text/css">
            /* Space out content a bit */
       body {
@@ -92,21 +93,21 @@
       <div class="header">
         <ul class="nav nav-pills pull-right">
           <li>
-            <a>Home</a>
+            <a href="index.html">Home</a>
           </li>
           <li class="active">
-            <a>Listing</a>
+            <a href="listing.html">Listing</a>
           </li>
           <!-- <li>            <a href="#">About</a>          </li>          <li>            <a href="#">Contact</a>          </li> -->
           <!--PHP PHP-->
           <li>
-            <a href="#">My Group</a>
+            <a href="group">My Group</a>
           </li>
           <li>
-            <a href="#">Login</a>
+            <a href="" class="block-default login">Login</a>
           </li>
           <li>
-            <a href="#">Register Group</a>
+            <a href="" class="block-default register">Register Group</a>
           </li>
         </ul>
         <h3 id="brand-tag" class="text-muted">EventZou</h3>
@@ -114,7 +115,7 @@
       <!-- Jumbotron -->
       <div class="jumbotron">
         <p></p>
-        <input type="text" class="form-control" placeholder="Search here">
+        <input type="text" class="form-control search" placeholder="Search here">
         <div class="container">
           <div class="row">
             <div class="col-md-3"></div>
