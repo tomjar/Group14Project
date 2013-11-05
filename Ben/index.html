@@ -78,6 +78,8 @@
           border-bottom: 0;
         }
       }
+
+
       .modal {
         background-color:rgba(0,0,0,0.5);
         color:rgba(255,255,255,1);
@@ -86,7 +88,32 @@
         margin: auto;
         text-align: center;
         overflow: auto;
-
+      }
+      .modal-body {
+        height: 455px;
+      }
+      .modal form {
+        max-width: 400px;
+        min-width: 250px;
+        margin: auto;
+      }
+      .modal form div {
+        float: left;
+        min-width: 250px;
+        max-width: 400px;
+        height: 50px;
+      }
+      .modal input {
+        margin-top: 15px;
+        margin-left: 15px;
+        max-width: 400px;
+        min-width: 200px;
+      }
+      .modal textarea {
+        margin-left: 10px;
+        max-width: 400px;
+        min-width: 260px;
+        height: 200px;        
       }
     </style>
   </head>
@@ -152,14 +179,23 @@
 <div id="login" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="loginLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="loginLabel">Modal header</h3>
+    <h3 id="loginLabel">Your group is growing as you type...</h3>
   </div>
   <div class="modal-body">
-    <p>One fine body…</p>
+    <form>
+    <section>
+    <div><label for="group-name">Group name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label><input type="text" id="group-name" name="group-name" placeholder="name (required)" /></div>
+    <div><label for="group-email">Group's public email</label><input id="group-email" name="group-email" type="email" placeholder="contact email (required)"/></div>
+    <div><label for="leader-name">Group leader&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label><input id="leader-name" name="leader-name"type="text" placeholder="leader name (optional)"/></div>
+    <div><label for="password">password&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label><input id="password" name="password"type="password" placeholder="password"/></div>
+    <div><br><label for="group-description">Description</label><textarea id="group-description" name="group-description"  placeholder="Tell us about your group; what makes you awesome? Why will people become awesome when they join you? Anything's fair game, just be nice..."></textarea></div>
+
+    </section>
+    </form>
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
+    <button class="btn btn-primary">Submit</button>
   </div>
 </div>
   </body>
