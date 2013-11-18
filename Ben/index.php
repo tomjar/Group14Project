@@ -1,5 +1,6 @@
 <?php
 include 'common.php';
+include 'database.php';
 ?>
 <!doctype html>
 <html>
@@ -128,21 +129,45 @@ include 'common.php';
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <h2>What's happening today</h2>
-                    <p>spawed from db</p>
-                    <p></p>
-                    <p><a class="btn btn-primary" href="#">View details &raquo;</a></p>
+                    <?php
+			$eventid = get_event_id("day");
+			if ($eventid != "") {
+				$eventname = get_event_name($eventid);
+				echo "<h3>$eventname</h3>";
+				$eventdetails = get_event_details($eventid);
+				echo "<p>$eventdetails</p>";
+				echo '<p><a class="btn btn-primary" href="event.php?id='."$eventid".'">View details &raquo;</a></p>';
+			} else
+				echo "<br>No events for the rest of the day!";
+		    ?>
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <h2>What's happening this week</h2>
-                    <h2></h2>
-                    <p>spawned from db</p>
-                    <p><a class="btn btn-primary" href="#">View details &raquo;</a></p>
+                    <?php
+			$eventid = get_event_id("week");
+			if ($eventid != "") {
+				$eventname = get_event_name($eventid);
+				echo "<h3>$eventname</h3>";
+				$eventdetails = get_event_details($eventid);
+				echo "<p>$eventdetails</p>";
+				echo '<p><a class="btn btn-primary" href="event.php?id='."$eventid".'">View details &raquo;</a></p>';
+			} else
+				echo "No events for the rest of the week!";
+		    ?>
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <h2>What's happening this month</h2>
-                    <h2></h2>
-                    <p>spawned from db</p>
-                    <p><a class="btn btn-primary" href="#">View details &raquo;</a></p>
+                    <?php
+			$eventid = get_event_id("month");
+			if ($eventid != "") {
+				$eventname = get_event_name($eventid);
+				echo "<h3>$eventname</h3>";
+				$eventdetails = get_event_details($eventid);
+				echo "<p>$eventdetails</p>";
+				echo '<p><a class="btn btn-primary" href="event.php?id='."$eventid".'">View details &raquo;</a></p>';
+			} else
+				echo "No events for the rest of the Month!";
+		    ?>
                 </div>
             </div>
             <!-- Site footer -->
