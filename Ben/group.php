@@ -88,7 +88,7 @@ include 'common.php';
             }
         </style>
 		
-			<a href="" class="block-default createE">Create an Event</a>
+			
 		
         <script type="text/javascript">
 
@@ -203,6 +203,7 @@ include 'common.php';
                     marign-bottom: 15px;
                 }
             </style>
+			<a href="" class="block-default createE">Create an Event</a>
             <div id="events" class="container">
                 <div class="row">
                     <div class="col-md-3"><h4>Event:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
