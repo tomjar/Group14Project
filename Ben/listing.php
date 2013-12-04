@@ -152,27 +152,26 @@ body {
 						echo "<i style=\"color:green;\">The query returned $rowsReturned rows.</i>\n<table border=\"1px\">\n";
 					}else
 					{
-						echo "<i style=\"color:orange;\">The query returned 0 rows.</i>\n<table border=\"1px\">\n";
+						echo "<i style=\"color:orange;\">The query returned 0 rows.</i>\n";
 					}
 					//start row for table headers
-					echo "<tr>";
+					echo "<div>";
 					for($i = 0; $i < $columnsReturned; $i++)
 					{
 						$fieldname = pg_field_name($result, $i);
-						echo "\t\n<th>$fieldname</th>";
+						echo "\t\n<i>$fieldname</i>";
 					}
 					//end table header row
-					echo "</tr>";
+					echo "</div>";
 					while ($line = pg_fetch_array($result, null, PGSQL_ASSOC))
 					{
-						echo "\t<tr>\n";
+						echo "\t<div class=\"row\">\n";
 						foreach ($line as $col_value)
 						{
-							echo "\t\t<td>$col_value</td>\n";
+							echo "\t\t<div class=\"col-md-3\">$col_value</div>\n";
 						}
-						echo "\t</tr>\n";
+						echo "\t</div>\n";
 					}
-					echo "</table>\n";
 				}/*END FUNCTION*/
 					
 				//This function will output the formatted query results if any results are available.
