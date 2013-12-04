@@ -102,9 +102,11 @@ $(document).ready(function() {
                 console.log("event creation failed");
                 //failed
             }
+			location.reload();
         });
         //if success dismiss modal, and redirect
         $("#createE").modal('toggle');
+		location.reload();
     });
 	
     $(".search").keypress(function(event) {
@@ -114,5 +116,6 @@ $(document).ready(function() {
         }
         console.log(event.which);
     });
+	
 
 });
