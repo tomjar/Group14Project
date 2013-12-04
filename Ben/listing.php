@@ -129,11 +129,97 @@ include 'common.php';
                 <p></p>
                 <input type="text" class="form-control search" placeholder="Search here">
                 <div class="container">
+					<?php
+					//grab the url param from url
+					$searchInput = $_GET["query"];
+					//does it exist?
+					if($searchInput != NULL){
+						//TODO: clean up the text input with regex 
+						generateSearchResults($searchInput);
+					}
+						/*This function recieves */
+	function printResultingTable($result)
+	{
+		$rowsReturned = pg_num_rows($result);
+		$columnsReturned = pg_num_fields($result);
+		
+		// Printing results in HTML
+		if($rowsReturned > 0)
+		{
+			echo "<i style=\"color:green;\">The query returned $rowsReturned rows.</i>\n<table border=\"1px\">\n";
+		}else
+		{
+			echo "<i style=\"color:orange;\">The query returned 0 rows.</i>\n<table border=\"1px\">\n";
+		}
+		//start row for table headers
+		echo "<tr>";
+		for($i = 0; $i < $columnsReturned; $i++)
+		{
+			$fieldname = pg_field_name($result, $i);
+			echo "\t\n<th>$fieldname</th>";
+		}
+		//end table header row
+		echo "</tr>";
+		while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) 
+		{
+			echo "\t<tr>\n";
+			foreach ($line as $col_value)
+			{
+				echo "\t\t<td>$col_value</td>\n";
+			}
+			echo "\t</tr>\n";
+		}
+		echo "</table>\n";
+		//free result
+		if($result != null)
+		{
+			pg_free_result($result);
+		}
+	}/*END FUNCTION*/
+					
+						//This function will output the formatted query results if any results are available.
+						function generateSearchResults($input){
+							//So i divided into two separate querys to help with the logic and to display them under
+							//separate headers. make sense?
+							$queryEvents = "SELECT events.name, events.details, events.event_date
+									FROM project.events
+									WHERE events.name ILIKE $1 
+									OR events.name ILIKE $2
+									ORDER BY events.event_date ASC;";
+							$queryGroups ="SELECT groups.name, groups.description
+									FROM project.groups
+									WHERE groups.name ILIKE $1 
+									OR groups.description ILIKE $2
+									ORDER BY groups.name ASC;";
+							
+							$dbconn = pg_connect("host=dbhost-pgsql.cs.missouri.edu dbname=cs3380f13grp14 user=cs3380f13grp14 password=IuaciWb3");
+							$statement = pg_prepare($dbconn, 'get_events', $queryEvents;
+							$result = pg_execute($dbconn, 'get_events', array($input, $input));
+							$rowsReturnedEvents = pg_num_rows($result);
+							if($rowsReturnedEvents > 0)
+							{
+								//print the results events
+								printResultingTable($result);
+							}
+							
+							$statement = pg_prepare($dbconn, 'get_groups', $queryGroups;
+							$result = pg_execute($dbconn, 'get_groups', array($input, $input));
+							$rowsReturnedGroups = pg_num_rows($result);
+							if($rowsReturnedGroups > 0)
+							{
+								//print the results of groups
+								printResultingTable($result);
+							}
+							pg_free_result($result);
+							pg_close($dbconn);
+						}
+					
+					?>
                     <div class="row">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-3"></div>
-                        <div class="col-md-3"></div>
-                        <div class="col-md-3"></div>
+                        <div class="col-md-3">ROw 1 Column 0 </div>
+                        <div class="col-md-3">ROw 1 Column 1 </div>
+                        <div class="col-md-3">ROw 1 Column 2 </div>
+                        <div class="col-md-3">ROw 1 Column 3 </div>
                     </div>
                 </div>
             </div>
