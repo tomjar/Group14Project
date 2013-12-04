@@ -75,6 +75,38 @@ $(document).ready(function() {
         //if success dismiss modal, and redirect
         $("#register").modal('toggle');
     });
+	
+	
+	//create Event
+	
+	$(".createE").click(function(e) {
+        //trigger createEvent modal
+        $("#createE").modal('toggle');
+    });
+    $(".submit-createE").click(function(e) {
+        var dat = {};
+        $(".e-data").each(function(index, element) {
+            dat[element.id] = $(element).val();
+			console.log(dat[element.id]);
+		});
+		
+		
+		 $.ajax({
+            type: "POST",
+            url: "createE.php",
+            data: dat
+        }).done(function(msg) {
+            if (msg.acknowledged) {
+                location.reload();
+            } else {
+                console.log("event creation failed");
+                //failed
+            }
+        });
+        //if success dismiss modal, and redirect
+        $("#createE").modal('toggle');
+    });
+	
     $(".search").keypress(function(event) {
         //should be used to capture enter key for searchbars
         if (event.which == "13") {

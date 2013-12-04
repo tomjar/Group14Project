@@ -92,4 +92,17 @@ function get_event_details($eventid) {
 	$dbconn = pg_close($dbconn);
 }
 
+//inserts event into db
+function insert_event($group_id, $name, $details, $event_date, $date_created) {
+    $dbconn = pg_connect("host=dbhost-pgsql.cs.missouri.edu dbname=cs3380f13grp14 user=cs3380f13grp14 password=IuaciWb3");
+    $result = pg_prepare($dbconn, 'insert_e', "INSERT INTO project.events (group_id,name,details,event_date,date_created) VALUES ($1,$2,$3,$4,$5)");
+	$date_created = new DateTime('NOW');
+    $date_created = $date_created->format('c');
+    $result = pg_execute($dbconn, 'insert_e', array($group_id, $name, $details, $event_date, $date_created));
+   $eventid = pg_fetch_result($result, 0, 0);
+   echo $eventid;
+    $dbconn = pg_close($dbconn);
+	return $eventid;
+}
+
 ?>
