@@ -200,12 +200,7 @@ include 'common.php';
                     marign-bottom: 15px;
                 }
             </style>
-			
-			<a href="" class="block-default createE">Create an Event</a>
-			
             <div id="events" class="container">
-			
-			
                 <div class="row">
                     <div class="col-md-3"><h4>Event:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
                     <div class="col-md-3"><h4>Event:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
@@ -266,32 +261,6 @@ include 'common.php';
             <button class="btn btn-primary submit-login">Submit</button>
 
         </div>
-
-		<!--MODALS-->
-        <div id="createE" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createELabel" aria-hidden="true">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="createELabel">Share an event</h3>
-            </div>
-            <div class="modal-body">
-                <form>
-				 <section>
-                        <div><label for="event-name">Event Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label><input type="text" id="event-name" class="e-data" name="event-name" placeholder="event name (required)" /></div>
-                        <div><br><label for="event-details">Details</label><input type="text" id="event-details" name="event-details" class="e-data"  placeholder="Enter Details"></div>
-						
-						<div><label for="event-date">Event Date</label><input type="date" id="event-date" name="event-date" class="e-data" placeholder="Event Date)"/></div> 
-						
-						<input type="number" id="e-group-id" name="e-group-id" class="e-data" value="<?php echo $_SESSION['user_id'];?>" readonly> 						
-                    </section>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                <button class="btn btn-primary submit-createE" >Submit</button>
-            </div>
-			</div>
-			</div>
-       
 
     </body>
 
