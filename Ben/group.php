@@ -280,7 +280,7 @@ include 'common.php';
 						
 						<div><label for="event-date">Event Date</label><input type="date" id="event-date" name="event-date" class="e-data" placeholder="Event Date)"/></div> 
 						
-						<input type="number" id="e-group-id" name="e-group-id" class="e-data" value="<?php echo $_SESSION['user_id'];?>" readonly> 						
+						<div><label for="e-group-id">Group #</label><input type="number" id="e-group-id" name="e-group-id" class="e-data" value="<?php echo $_SESSION['user_id'];?>" readonly></div>				
                     </section>
                 </form>
             </div>
