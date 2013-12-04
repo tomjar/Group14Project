@@ -193,7 +193,7 @@ include 'common.php';
 									ORDER BY groups.name ASC;";
 							
 							$dbconn = pg_connect("host=dbhost-pgsql.cs.missouri.edu dbname=cs3380f13grp14 user=cs3380f13grp14 password=IuaciWb3");
-							$statement = pg_prepare($dbconn, 'get_events', $queryEvents;
+							$statement = pg_prepare($dbconn, 'get_events', $queryEvents);
 							$result = pg_execute($dbconn, 'get_events', array($input, $input));
 							$rowsReturnedEvents = pg_num_rows($result);
 							if($rowsReturnedEvents > 0)
@@ -202,7 +202,7 @@ include 'common.php';
 								printResultingTable($result);
 							}
 							
-							$statement = pg_prepare($dbconn, 'get_groups', $queryGroups;
+							$statement = pg_prepare($dbconn, 'get_groups', $queryGroups);
 							$result = pg_execute($dbconn, 'get_groups', array($input, $input));
 							$rowsReturnedGroups = pg_num_rows($result);
 							if($rowsReturnedGroups > 0)
