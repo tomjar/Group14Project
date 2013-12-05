@@ -147,31 +147,74 @@ include 'common.php';
                     width: 250px;
                 }
             </style>
-            <div id="event">
-                <!-- <img src width="200px" height="200px" alt="image problems" class="pull-left img-rounded"> -->
-                <div class="pull-left" id="event-name">
-                    <h4 class="pull-left" id="event-name-value">Event Name:<strong>Lolapalooza</strong></h4>
-                </div>
-                <div class="pull-left" id="event-date">
-                    <h4>Event Date: <strong id="event-date-value">10/27/2013</strong></h4>
-                </div>
-                <div class="pull-left" id="event-host">
-                    <h4>Hosted by:           <a href id="event-host-value">ACM</a></h4>
-                </div>
-                <div class="pull-left" id="event-contact">
-                    <h4>Contact:           <a href="mailto:ACM" id="event-contact-value">bds8c7@mail.missouri.edu</a></h4>
-                </div>
-                <hr class="pull-left">
-                <div class="pull-left" id="event-description">
-                    <h4>Description</h4>
-                    <p id="event-description-value">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-            </div>
+			
+	<?php		
+	
+			$eid = htmlspecialchars($_GET["e-id"]);
+			$dbconn = pg_connect("host=dbhost-pgsql.cs.missouri.edu dbname=cs3380f13grp14 user=cs3380f13grp14 password=IuaciWb3");
+
+				// Select the name of the event using the id
+				$result = pg_prepare($dbconn, 'get_n', "SELECT name, details, event_date FROM project.events WHERE event_id = $1");
+				
+				/*
+				//still need to SQL select group email and group name
+				
+				SELECT events.name, events.details, events.event_date, groups.name FROM project.events INNER JOIN project.groups ON groups.group_id=events.group_id;
+
+				
+				
+				
+				*/
+				
+				
+
+				//echo "Group ID # ".$_SESSION['user_id'];
+				$result = pg_execute($dbconn, 'get_n', array($eid));
+				$cmdtuples = pg_affected_rows($result);
+				
+		
+				while($line = pg_fetch_array($result, null, PGSQL_NUM)) {
+					
+					//display event boxes
+				//	echo "<h3>$line[1]</h3>"; //event name
+				//	echo "<h4>$line[3]</h4>"; //event date
+				//	echo "<h6>$line[2]</h6>"; //event details
+					//echo "<h4>$line[4]</h4>";
+				
+		
+			
+			
+			
+			
+            echo "<div id=\"event\">";
+             /*   <!-- <img src width="200px" height="200px" alt="image problems" class="pull-left img-rounded"> -->*/
+                echo "<div class=\"pull-left\" id=\"event-name\">";
+                    echo "<h4 class=\"pull-left\" id=\"event-name-value\">Event Name:<strong> $line[0]</strong></h4>";
+                echo "</div>";
+                echo "<div class=\"pull-left\" id=\"event-date\">";
+                    echo "<h4>Event Date: <strong id=\"event-date-value\"> $line[2]</strong></h4>";
+                echo "</div>";
+                echo "<div class=\"pull-left\" id=\"event-host\">";
+                    echo "<h4>Hosted by:           <a href id=\"event-host-value\">ACM</a></h4>";
+               echo "</div>";
+                echo "<div class=\"pull-left\" id=\"event-contact\">";
+                    echo "<h4>Contact:           <a href=\"mailto:ACM\" id=\"event-contact-value\">bds8c7@mail.missouri.edu</a></h4>";
+                echo "</div>";
+                echo "<hr class=\"pull-left\">";
+                echo "<div class=\"pull-left\" id=\"event-description\">";
+                   echo "<h4>Description</h4>";
+                    echo "<p id=\"event-description-value\"> $line[1]</p>";
+               echo "</div>";
+            echo "</div>";
+			
+			}
+
+			
+		pg_free_result($result);
+		// Close the database connection
+		$dbconn = pg_close($dbconn);
+		
+			?>
             <!-- Site footer -->
             <div class="footer">
                 <p>&copy; Company 2013</p>
