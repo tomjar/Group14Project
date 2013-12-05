@@ -155,7 +155,15 @@ function get_event($groupid) {
 	// Close the connection
 	$dbconn = pg_close($dbconn);
 }
-
+//By Ben, gets group information as well as event information
+function get_event_and_groups($search) {
+	$dbconn = pg_connect("host=dbhost-pgsql.cs.missouri.edu dbname=cs3380f13grp14 user=cs3380f13grp14 password=IuaciWb3");
+	$result = pg_prepare($dbconn,'getstuff',"SELECT * FROM project.EVENTS e INNER JOIN project.GROUPS g ON e.group_id=g.group_id WHERE e.name ILIKE $1 OR e.description ILIKE $1 OR g.email ILIKE $1 OR g.details ILIKE $1");
+	$result = pg_execute($dbconn,'getstuff',array($search));
+	pg_close($dbconn);
+	$rows = pg_fetch_all($result);
+	return $rows;
+}
 //inserts event into db
 function insert_event($group_id, $name, $details, $event_date, $date_created) {
     $dbconn = pg_connect("host=dbhost-pgsql.cs.missouri.edu dbname=cs3380f13grp14 user=cs3380f13grp14 password=IuaciWb3");

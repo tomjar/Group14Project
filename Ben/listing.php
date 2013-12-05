@@ -129,8 +129,9 @@ body {
 		<!-- Jumbotron -->
 		<div class="jumbotron">
 			<p></p>
+			<form action="#">
 			<input type="text" class="form-control search"
-				placeholder="Search here">
+				placeholder="Search here"></form>
 			<div class="container">
 				<?php
 				//grab the url param from url
@@ -149,29 +150,35 @@ body {
 					// Printing results in HTML
 					if($rowsReturned > 0)
 					{
-						echo "<i style=\"color:green;\">The query returned $rowsReturned rows.</i>\n<table border=\"1px\">\n";
+						echo "<div><i style=\"color:green;\">Found $rowsReturned events!</i>\n<table border=\"1px\"></div>\n";
 					}else
 					{
-						echo "<i style=\"color:orange;\">The query returned 0 rows.</i>\n";
+						echo "<div><i style=\"color:orange;\">No events found =(</i></div>\n";
 					}
-					//start row for table headers
 					echo "<div>";
-					for($i = 0; $i < $columnsReturned; $i++)
+					//start row for table headers
+					// echo "<div>";
+					// // for($i = 0; $i < $columnsReturned; $i++)
+					// // {
+					// // 	$fieldname = pg_field_name($result, $i);
+					// // 	echo "\t\n<i>$fieldname</i>";
+					// // }
+					// //end table header row
+					// echo "</div>";
+					$j = 3;
+					$lines = pg_fetch_all($result);
+					foreach ($lines as $row_value)
 					{
-						$fieldname = pg_field_name($result, $i);
-						echo "\t\n<i>$fieldname</i>";
+					$j++;
+							if ($j==3) echo "\t<div class='row'>";
+								echo "\t\t<div class=\"col-md-3\">";
+								echo "\t\t\t<h3>".$row_value['name']."</h3>";
+								echo "\t\t\t<p style='font-size:12pt;'>".$row_value['details']."</p>";
+								echo "\t\t\t<a href='https://babbage.cs.missouri.edu/~cs3380f13grp14/working/tmp/event.php?id=".$row_value['event_id']."'> view ".$row_value['name']."</a></div>";
+							if ($j==3) echo '\t</div>';
+							if ($j==3) $j=0;
 					}
-					//end table header row
-					echo "</div>";
-					while ($line = pg_fetch_array($result, null, PGSQL_ASSOC))
-					{
-						echo "\t<div class=\"row\">\n";
-						foreach ($line as $col_value)
-						{
-							echo "\t\t<div class=\"col-md-3\">$col_value</div>\n";
-						}
-						echo "\t</div>\n";
-					}
+						
 				}/*END FUNCTION*/
 					
 				//This function will output the formatted query results if any results are available.
@@ -179,7 +186,7 @@ body {
 					//So i divided into two separate querys to help with the logic and to display them under
 					//separate headers. make sense?
 					//SELECT 'a fat cat sat on a mat and ate a fat rat'::tsvector @@ 'cat & rat'::tsquery;
-					$queryEvents = "SELECT events.name, events.details, events.event_date
+					$queryEvents = "SELECT *
 					FROM project.events
 					WHERE events.name ILIKE $1
 					OR events.details ILIKE $2
@@ -213,19 +220,13 @@ body {
 				}
 					
 				?>
-				<div class="row">
-					<div class="col-md-3">ROw 1 Column 0</div>
-					<div class="col-md-3">ROw 1 Column 1</div>
-					<div class="col-md-3">ROw 1 Column 2</div>
-					<div class="col-md-3">ROw 1 Column 3</div>
-				</div>
+
 			</div>
 		</div>
 		<!-- Example row of columns -->
 		<!-- Site footer -->
-		<div class="footer">
-			<p>&copy; EventZou Group 2013</p>
 		</div>
+
 	</div>
 	<!--MODALS-->
 	<div id="register" class="modal fade" tabindex="-1" role="dialog"
@@ -305,6 +306,9 @@ body {
 		<button class="btn btn-primary submit-login">Submit</button>
 
 	</div>
+			<div class="footer" style="position:fixed; bottom:0px; width:100%;text-align:middle;">
+			<div>&copy; EventZou Group 2013</div>
+		</div>
 </body>
 
 </html>

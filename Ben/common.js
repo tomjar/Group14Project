@@ -1,7 +1,14 @@
 $(document).ready(function() {
 //typical functions or events for every page
 
+    $(".search").keypress(function(e){
+        if(e.which == 13){
+            e.preventDefault();
+            window.location.href = 'https://babbage.cs.missouri.edu/~cs3380f13grp14/working/tmp/listing.php?query='+$(".search").val();
+        } else {
 
+        }
+    });
 
     $(".block-default").click(function(e) {
         //stops page refresh for elements that have this class
@@ -108,14 +115,5 @@ $(document).ready(function() {
         $("#createE").modal('toggle');
 		location.reload();
     });
-	
-    $(".search").keypress(function(event) {
-        //should be used to capture enter key for searchbars
-        if (event.which == "13") {
-            window.location.href = window.location.origin + "/listing.html?search=" + $(this).val();
-        }
-        console.log(event.which);
-    });
-	
 
 });
