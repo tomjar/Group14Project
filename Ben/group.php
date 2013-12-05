@@ -198,7 +198,7 @@ include 'database.php';
                     margin: 5px;
                     margin-left: 10px;
                     width:31%;
-                    height:100px;
+                    height:140px;
                     background: rgba(125,125,125,0.1);
                     border-radius: 15px;
                 }
@@ -212,65 +212,54 @@ include 'database.php';
 				$dbconn = pg_connect("host=dbhost-pgsql.cs.missouri.edu dbname=cs3380f13grp14 user=cs3380f13grp14 password=IuaciWb3");
 
 				// Select the name of the event using the id
-				$result = pg_prepare($dbconn, 'get_n', "SELECT name, details, event_date FROM project.events WHERE group_id = $1");
-				echo $_SESSION['user_id'];
+				$result = pg_prepare($dbconn, 'get_n', "SELECT event_id, name, details, event_date FROM project.events WHERE group_id = $1");
+				echo "Group ID # ".$_SESSION['user_id'];
 				$result = pg_execute($dbconn, 'get_n', array($_SESSION['user_id']));
 				$cmdtuples = pg_affected_rows($result);
 				
+				
+				
+				
+				
 				echo "<div id=\"events\" class=\"container\">";
-                echo "<div class=\"row\">";
+               echo "<div class=\"row\">";
+				
+				$tempeid = 0;
 				while($line = pg_fetch_array($result, null, PGSQL_NUM)) {
 					echo "<div class=\"col-md-3\">";
-					foreach($line as $col_value){
-						echo "<h4>$col_value</h4>";
-					}				
+
+					//grab event id
+					$tempeid = $line[0];
+					
+					//display event boxes
+					echo "<h3>$line[1]</h3>"; //event name
+					echo "<h4>$line[3]</h4>"; //event date
+					echo "<h6>$line[2]</h6>"; //event details
+					//echo "<h4>$line[4]</h4>";
+					
+					/*
+					foreach($line as $col_value){		 
+								echo "<h4>$col_value</h4>";
+					}*/
+					
+					
+					echo "<form action=\"event.php\" method=\"get\">";
+					//echo "<form action=\"event.php?e-id=\"$values[0]\" method=\"post\">";
+					echo "<input type=\"hidden\" value=$tempeid name=\"e-id\" />";
+					echo '<button type\"submit\" value="" name="">View</button>';					
+					//echo "<a href=\"event.php\">view</a>";
+					
 					echo "</div>";
+					echo "</form>";
 				}
 				echo "</div></div>";
 			
 		pg_free_result($result);
 		// Close the database connection
 		$dbconn = pg_close($dbconn);
-			
-			/*
-			------------
-				$query = 'SELECT * FROM project.events WHERE(group_id = $_SESSION[\'user_id\']) ORDER BY surface_area DESC';
-
-				$result = pg_query($query) or die('Query failed:' . pg_last_error());
-					
-					$cmdtuples = pg_affected_rows($result);
-					echo $cmdtuples . " rows returned\n";
-					echo"<table>\n";
-					while($line = pg_fetch_array($result, null, PGSQL_ASSOC)){
-
-					echo "\t<tr>\n";
-					foreach($line as $col_value){
-						echo "\t\t<td>$col_value</td>\n";
-					}
-					echo "\t</tr>\n";
-				}
-				echo "</table>";
-				}
-				pg_free_result($result);
-
-
-				pg_close($conn);
-*/
+		
 			?>
-			<!--
-            <div id="events" class="container">
-                <div class="row">
-                    <div class="col-md-3"><h4>Event:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
-                    <div class="col-md-3"><h4>Event:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
-                    <div class="col-md-3"><h4>Event:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3"><h4>Event:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
-                    <div class="col-md-3"><h4>Event:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
-                    <div class="col-md-3"><h4>Event:HackMizzou</h4><h4>Date:10/27/2014</h4><a href="event.php">view</a></div>
-                </div>
-            </div>
-			-->
+
             <!-- Site footer -->
             <div class="footer">
                 <p>&copy; EventZou 2013</p>
