@@ -12,6 +12,8 @@ function insert_group($name, $description, $email, $password) {
     $salt = md5(uniqid('', true)); //not the best but more than enough for our purposes even if this were a business
     $result = pg_execute($dbconn, 'insert_s', array($salt, $userid));
     $hash = crypt($password, $salt);
+    $e = "register ".$password." ".$salt." ".$hash;
+    error_log($e);
     $result = pg_prepare($dbconn, 'insert_p', "INSERT INTO project.passwords (Password_Hash,Group_ID) VALUES ($1,$2)");
     $result = pg_execute($dbconn, 'insert_p', array($hash, $userid));
     $dbconn = pg_close($dbconn);
@@ -21,21 +23,22 @@ function insert_group($name, $description, $email, $password) {
 //returns true/false, also populates a few session properties
 function check_pass($name, $password) {
     $dbconn = pg_connect("host=dbhost-pgsql.cs.missouri.edu dbname=cs3380f13grp14 user=cs3380f13grp14 password=IuaciWb3");
-    $result = pg_prepare($dbconn, 'get_id', "SELECT user_id,s.salt,p.password_hash as hash
+    $result = pg_prepare($dbconn, 'get_id', "SELECT s.group_id ,s.salt,p.password_hash as hash
         FROM project.groups g
         INNER JOIN project.salts s using(group_id)
         INNER JOIN project.passwords p using(group_id) WHERE g.name = $1");
     $result = pg_execute($dbconn, 'get_id', array($name));
-    echo json_encode(array("what" => $result));
-    $userid = pg_fetch_result($result, 0, "user_id");
+    $userid = pg_fetch_result($result, 0, "group_id");
     $salt = pg_fetch_result($result, 0, "salt");
     $hash = pg_fetch_result($result, 0, "hash");
     $dbconn = pg_close($dbconn);
     if (crypt($password, $salt) != $hash) {
+    	$h = crypt($password, $salt);
+    	$error = "bad login ".$password." ".$salt." ".$hash." ".$h;
+    	error_log($error);
         return false;
     } else {
-        $_SESSION['user_id'] = $userid;
-        $_SESSION['user'] = $name;
+        $_SESSION['valid'] = true; 
         return true;
     }
 }

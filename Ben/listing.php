@@ -174,7 +174,7 @@ body {
 								echo "\t\t<div class=\"col-md-3\">";
 								echo "\t\t\t<h3>".$row_value['name']."</h3>";
 								echo "\t\t\t<p style='font-size:12pt;'>".$row_value['details']."</p>";
-								echo "\t\t\t<a href='https://babbage.cs.missouri.edu/~cs3380f13grp14/working/tmp/event.php?id=".$row_value['event_id']."'> view ".$row_value['name']."</a></div>";
+								echo "\t\t\t<a href='https://babbage.cs.missouri.edu/~cs3380f13grp14/working/tmp/event.php?id=".$row_value['event_id']."'> view ".$row_value['name']." page</a></div>";
 							if ($j==3) echo '\t</div>';
 							if ($j==3) $j=0;
 					}
