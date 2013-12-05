@@ -92,6 +92,70 @@ function get_event_details($eventid) {
 	$dbconn = pg_close($dbconn);
 }
 
+// Given a group ID, this function returns its email, name, and description
+function get_group_info($groupid) {
+	// Variables to put into the array to return
+	$email = "";
+	$name = "";
+	$desc = "";
+
+	// Connect to the database
+	$dbconn = pg_connect("host=dbhost-pgsql.cs.missouri.edu dbname=cs3380f13grp14 user=cs3380f13grp14 password=IuaciWb3");
+
+	// Select the email, name, and description of a group using the id
+	$result = pg_prepare($dbconn, 'get_info', "SELECT email, name, description FROM project.groups WHERE group_id = $1");
+	$result = pg_execute($dbconn, 'get_info', array($groupid));
+	while($line = pg_fetch_array($result, null, PGSQL_NUM)) {
+		$email = $line[0];
+		$name = $line[1];
+		$desc = $line[2];
+	}
+
+	// Create a string array to hold all the values and return it
+	$array = array(
+		"email" => $email,
+		"name" => $name,
+		"desc" => $desc,
+	);
+
+	return $array;
+
+	// Close the connection
+	$dbconn = pg_close($dbconn);
+}
+
+// Given a group ID, this function returns a random event (id, name, date)
+function get_event($groupid) {
+	// Variables to put into the array to return
+	$id = "";
+	$name = "";
+	$date = "";
+	
+	// Connect to the database
+	$dbconn = pg_connect("host=dbhost-pgsql.cs.missouri.edu dbname=cs3380f13grp14 user=cs3380f13grp14 password=IuaciWb3");
+
+	// Select the id, name, and date of an event using the group id
+	$result = pg_prepare($dbconn, 'get_event', "SELECT event_id, name, event_date FROM project.events WHERE event_date > current_timestamp AND group_id = $1 ORDER BY random() LIMIT 1");
+	$result = pg_execute($dbconn, 'get_event', array($groupid));
+	while($line = pg_fetch_array($result, null, PGSQL_NUM)) {
+		$id = $line[0];
+		$name = $line[1];
+		$date = substr($line[2], 0, -9);
+	}
+
+	// Create a string array to hold all the values and return it
+	$array = array(
+		"id" => $id,
+		"name" => $name,
+		"date" => $date,
+	);
+
+	return $array;
+
+	// Close the connection
+	$dbconn = pg_close($dbconn);
+}
+
 //inserts event into db
 function insert_event($group_id, $name, $details, $event_date, $date_created) {
     $dbconn = pg_connect("host=dbhost-pgsql.cs.missouri.edu dbname=cs3380f13grp14 user=cs3380f13grp14 password=IuaciWb3");
